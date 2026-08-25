@@ -5,3 +5,4 @@ cdk.out/
 .env
 *.log
 .DS_Store
+notes/
