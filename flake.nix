@@ -17,11 +17,19 @@
     in {
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
+          git
+          jq
+          nodejs_24
+          docker-client
+          awscli2
+          aws-cdk-cli
+          kubectl
+          kubernetes-helm
+          kind
           k9s
           kubectx
-          kubectl
-          terraform
-          awscli2
+          pnpm
+          ripgrep
         ];
       };
     });
