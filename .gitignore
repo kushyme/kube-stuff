@@ -6,3 +6,6 @@ cdk.out/
 *.log
 .DS_Store
 notes/
+AGENTS.md
+.envrc.local
+.claude/

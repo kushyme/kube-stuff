@@ -17,7 +17,6 @@
     "infra:deploy": "pnpm --dir infra exec cdk deploy InfraStack --profile btc-sandbox",
     "infra:destroy": "pnpm --dir infra exec cdk destroy InfraStack --profile btc-sandbox",
     "chart:lint": "helm lint charts/cats",
-    "chart:template": "helm template cats charts/cats",
-    "cdk": "AWS_PROFILE=btc-sandbox AWS_DEFAULT_REGION=eu-central-1 pnpm --filter infra cdk"
+    "chart:template": "helm template cats charts/cats"
   }
 }
