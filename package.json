@@ -1,0 +1,22 @@
+{
+  "name": "kube-stuff",
+  "private": true,
+  "packageManager": "pnpm@11.22.0",
+  "scripts": {
+    "aws:login": "aws sso login --profile btc-sandbox",
+    "aws:whoami": "aws sts get-caller-identity --profile btc-sandbox",
+    "app:dev": "pnpm --dir app run dev",
+    "app:build": "pnpm --dir app run build",
+    "app:docker:build": "docker build --tag cats:local app",
+    "app:docker:run": "docker run --rm --publish 8080:80 cats:local",
+    "infra:build": "pnpm --dir infra run build",
+    "infra:test": "pnpm --dir infra run test",
+    "infra:synth": "pnpm --dir infra exec cdk synth InfraStack --profile btc-sandbox",
+    "infra:diff": "pnpm --dir infra exec cdk diff InfraStack --profile btc-sandbox",
+    "infra:bootstrap": "pnpm --dir infra exec cdk bootstrap aws://711635510500/eu-central-1 --profile btc-sandbox",
+    "infra:deploy": "pnpm --dir infra exec cdk deploy InfraStack --profile btc-sandbox",
+    "infra:destroy": "pnpm --dir infra exec cdk destroy InfraStack --profile btc-sandbox",
+    "chart:lint": "helm lint charts/cats",
+    "chart:template": "helm template cats charts/cats"
+  }
+}
