@@ -18,17 +18,18 @@ export class InfraStack extends cdk.Stack {
       natGateways: 1
     })
 
-    const ecrRepository = new Repository(this, "ecrRepository", {
+    const ecrRepository = new Repository(this, "catsEcrRepository", {
       imageScanOnPush: true,
-      repositoryName: "cats",
+      repositoryName: "cats-repository",
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       emptyOnDelete: true,
     });
     
-    const cluster = new Cluster(this, "eksCluster", {
+    const cluster = new Cluster(this, "catsEksCluster", {
       version: KubernetesVersion.V1_36,
       vpc: vpc,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
+      clusterName: "cats-cluster",
     });
 
     const adminRoleArn =
