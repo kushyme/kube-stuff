@@ -7,7 +7,7 @@ replicaCount: 1
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: 711635510500.dkr.ecr.eu-central-1.amazonaws.com/cats
+  repository: 711635510500.dkr.ecr.eu-central-1.amazonaws.com/cats-repository
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
@@ -52,9 +52,12 @@ securityContext: {}
 # This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
 service:
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
-  type: ClusterIP
+  type: LoadBalancer
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 80
+  loadBalancerClass: eks.amazonaws.com/nlb
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
@@ -111,7 +114,12 @@ httpRoute:
   #     - name: version
   #       value: v2
 
-resources: {}
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    memory: 128Mi
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -154,7 +162,8 @@ volumeMounts: []
   #   mountPath: "/etc/foo"
   #   readOnly: true
 
-nodeSelector: {}
+nodeSelector:
+  node.kubernetes.io/instance-type: c5a.large
 
 tolerations: []
 
