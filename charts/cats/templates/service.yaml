@@ -13,6 +13,10 @@ spec:
   {{- with .Values.service.loadBalancerClass }}
   loadBalancerClass: {{ . }}
   {{- end }}
+  {{- with .Values.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   ports:
     - port: {{ .Values.service.port }}
       targetPort: http
