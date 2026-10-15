@@ -56,7 +56,7 @@ service:
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 80
   loadBalancerClass: eks.amazonaws.com/nlb
-  # real value lives in values.local.yaml. Empty means open to the world
+  # real value lives in values.local.yaml. Empty means open to the world (inbound is 0.0.0.0)
   loadBalancerSourceRanges: []
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
