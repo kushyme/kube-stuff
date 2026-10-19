@@ -9,3 +9,4 @@ notes/
 AGENTS.md
 .envrc.local
 .claude/
+charts/cats/values.local.yaml
